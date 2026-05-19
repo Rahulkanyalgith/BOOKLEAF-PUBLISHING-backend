@@ -3,6 +3,7 @@ import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool, PoolConfig } from 'pg';
 import fs from 'fs';
 import path from 'path';
+import os from 'os';
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -12,7 +13,22 @@ if (!connectionString) {
 
 const poolConfig: PoolConfig = { connectionString };
 const aivenCaBase64 = process.env.AIVEN_CA_CERT;
-const aivenCaPath = process.env.AIVEN_CA_CERT_PATH;
+let aivenCaPath = process.env.AIVEN_CA_CERT_PATH || process.env.NODE_EXTRA_CA_CERTS;
+
+// If only base64 is provided, write it to a temp file so Node/pg can load it reliably in hosted envs
+if (aivenCaBase64 && !aivenCaPath) {
+  try {
+    const tmpDir = os.tmpdir();
+    const tmpPath = path.join(tmpDir, 'aiven-ca.pem');
+    fs.writeFileSync(tmpPath, Buffer.from(aivenCaBase64, 'base64'));
+    aivenCaPath = tmpPath;
+    // also set NODE_EXTRA_CA_CERTS so Node picks it up for global TLS
+    process.env.NODE_EXTRA_CA_CERTS = tmpPath;
+    console.info(`Wrote Aiven CA to temporary path: ${tmpPath}`);
+  } catch (err) {
+    console.warn('Failed to write AIVEN_CA_CERT to temp file:', err);
+  }
+}
 
 if (aivenCaBase64 || aivenCaPath) {
   let ca: string | undefined;
