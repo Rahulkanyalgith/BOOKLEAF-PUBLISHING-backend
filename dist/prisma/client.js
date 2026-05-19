@@ -26,6 +26,9 @@ if (aivenCaBase64 || aivenCaPath) {
         }
     }
     else if (aivenCaPath) {
+        if (!fs_1.default.existsSync(aivenCaPath)) {
+            throw new Error(`AIVEN_CA_CERT_PATH not found: ${aivenCaPath}`);
+        }
         ca = fs_1.default.readFileSync(aivenCaPath, 'utf8');
     }
     if (ca) {

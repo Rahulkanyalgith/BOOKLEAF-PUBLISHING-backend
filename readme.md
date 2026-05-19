@@ -31,7 +31,7 @@ Required values:
 Example format:
 
 ```env
-DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public&sslmode=require"
+DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE?schema=public&uselibpqcompat=true&sslmode=require"
 ```
 
 ### If your password has special characters
@@ -86,4 +86,4 @@ Fix: encode the password and update `DATABASE_URL` as shown above.
 
 ### Connection refused / SSL error
 
-Supabase requires SSL. Make sure `sslmode=require` is in `DATABASE_URL`.
+Aiven and similar hosted Postgres providers may require TLS. Use `uselibpqcompat=true&sslmode=require` in `DATABASE_URL`, and keep the CA file path configured if your provider needs it.

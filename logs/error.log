@@ -22,3 +22,187 @@
     at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
     at processTicksAndRejections (node:internal/process/task_queues:105:5)
     at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 19:13:10 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 19:13:29 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 19:18:59 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 19:19:19 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 19:21:42 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:10:53 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:12:55 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:28:40
+
+  25 
+  26 export const authService = {
+  27   async register(input: RegisterInput) {
+→ 28     const existing = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.register (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:28:22)
+    at register (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:32:20)
+2026-05-19 21:18:45 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:36
+
+  45 },
+  46 
+  47 async login(input: LoginInput) {
+→ 48   const user = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:48:18)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:19:06 [[31merror[39m]: PrismaClientKnownRequestError: 
+Invalid `prisma.user.findUnique()` invocation in
+C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:28:40
+
+  25 
+  26 export const authService = {
+  27   async register(input: RegisterInput) {
+→ 28     const existing = await prisma.user.findUnique(
+Error opening a TLS connection: self-signed certificate in certificate chain
+    at zr.handleRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:237:13)
+    at zr.handleAndLogRequestError (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:183:12)
+    at zr.request (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\RequestHandler.ts:152:12)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at a (C:\Users\acer\Desktop\assignment\backend\node_modules\@prisma\client\src\runtime\getPrismaClient.ts:963:24)
+    at Object.register (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:28:22)
+    at register (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:32:20)
+2026-05-19 21:26:58 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:27:50 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:27:53 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:27:54 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-19 21:33:54 [[31merror[39m]: Error: Access denied: insufficient permissions
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at C:\Users\acer\Desktop\assignment\backend\src\middleware\auth.middleware.ts:52:23
+    at Layer.handleRequest (C:\Users\acer\Desktop\assignment\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:342:13)
+    at C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:291:5)
+    at authenticate (C:\Users\acer\Desktop\assignment\backend\src\middleware\auth.middleware.ts:39:5)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+2026-05-19 21:33:54 [[31merror[39m]: Error: Access denied: insufficient permissions
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at C:\Users\acer\Desktop\assignment\backend\src\middleware\auth.middleware.ts:52:23
+    at Layer.handleRequest (C:\Users\acer\Desktop\assignment\backend\node_modules\router\lib\layer.js:152:17)
+    at trimPrefix (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:342:13)
+    at C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:297:9
+    at processParams (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:582:12)
+    at next (C:\Users\acer\Desktop\assignment\backend\node_modules\router\index.js:291:5)
+    at authenticate (C:\Users\acer\Desktop\assignment\backend\src\middleware\auth.middleware.ts:39:5)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
