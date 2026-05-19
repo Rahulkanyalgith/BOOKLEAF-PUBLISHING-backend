@@ -2,6 +2,7 @@ import { PrismaClient } from '@prisma/client';
 import { PrismaPg } from '@prisma/adapter-pg';
 import { Pool, PoolConfig } from 'pg';
 import fs from 'fs';
+import path from 'path';
 
 const connectionString = process.env.DATABASE_URL;
 
@@ -22,10 +23,14 @@ if (aivenCaBase64 || aivenCaPath) {
       ca = aivenCaBase64;
     }
   } else if (aivenCaPath) {
-    if (!fs.existsSync(aivenCaPath)) {
-      throw new Error(`AIVEN_CA_CERT_PATH not found: ${aivenCaPath}`);
+    const resolvedPath = path.isAbsolute(aivenCaPath)
+      ? aivenCaPath
+      : path.resolve(process.cwd(), aivenCaPath);
+    if (!fs.existsSync(resolvedPath)) {
+      console.warn(`AIVEN_CA_CERT_PATH not found: ${resolvedPath}. Continuing without custom CA.`);
+    } else {
+      ca = fs.readFileSync(resolvedPath, 'utf8');
     }
-    ca = fs.readFileSync(aivenCaPath, 'utf8');
   }
 
   if (ca) {

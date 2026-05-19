@@ -8,6 +8,7 @@ const client_1 = require("@prisma/client");
 const adapter_pg_1 = require("@prisma/adapter-pg");
 const pg_1 = require("pg");
 const fs_1 = __importDefault(require("fs"));
+const path_1 = __importDefault(require("path"));
 const connectionString = process.env.DATABASE_URL;
 if (!connectionString) {
     throw new Error('DATABASE_URL is required');
@@ -26,10 +27,15 @@ if (aivenCaBase64 || aivenCaPath) {
         }
     }
     else if (aivenCaPath) {
-        if (!fs_1.default.existsSync(aivenCaPath)) {
-            throw new Error(`AIVEN_CA_CERT_PATH not found: ${aivenCaPath}`);
+        const resolvedPath = path_1.default.isAbsolute(aivenCaPath)
+            ? aivenCaPath
+            : path_1.default.resolve(process.cwd(), aivenCaPath);
+        if (!fs_1.default.existsSync(resolvedPath)) {
+            console.warn(`AIVEN_CA_CERT_PATH not found: ${resolvedPath}. Continuing without custom CA.`);
         }
-        ca = fs_1.default.readFileSync(aivenCaPath, 'utf8');
+        else {
+            ca = fs_1.default.readFileSync(resolvedPath, 'utf8');
+        }
     }
     if (ca) {
         poolConfig.ssl = {
