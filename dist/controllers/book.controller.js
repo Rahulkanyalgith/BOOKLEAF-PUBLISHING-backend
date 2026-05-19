@@ -14,7 +14,8 @@ const getMyBooks = async (req, res, next) => {
 exports.getMyBooks = getMyBooks;
 const getBookById = async (req, res, next) => {
     try {
-        const book = await book_service_1.bookService.getBookById(req.params.id, req.user.id);
+        const bookId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const book = await book_service_1.bookService.getBookById(bookId, req.user.id);
         res.json({ success: true, data: book });
     }
     catch (err) {

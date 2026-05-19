@@ -18,7 +18,8 @@ router.post('/:id/reply', async (req, res, next) => {
             res.status(400).json({ success: false, error: 'Message is required' });
             return;
         }
-        const msg = await ticket_service_1.ticketService.addResponse(req.params.id, req.user.id, message, false, 'AUTHOR');
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const msg = await ticket_service_1.ticketService.addResponse(ticketId, req.user.id, message, false, 'AUTHOR');
         res.status(201).json({ success: true, data: msg });
     }
     catch (err) {

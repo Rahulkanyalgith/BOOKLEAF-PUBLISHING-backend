@@ -16,7 +16,8 @@ router.get('/', async (req, res, next) => {
 });
 router.patch('/:id/read', async (req, res, next) => {
     try {
-        await notification_service_1.notificationService.markRead(req.params.id, req.user.id);
+        const notificationId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        await notification_service_1.notificationService.markRead(notificationId, req.user.id);
         res.json({ success: true });
     }
     catch (err) {

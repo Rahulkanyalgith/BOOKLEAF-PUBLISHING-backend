@@ -40,7 +40,8 @@ exports.getMyTickets = getMyTickets;
 // Author: get single ticket (own only)
 const getMyTicketById = async (req, res, next) => {
     try {
-        const ticket = await ticket_service_1.ticketService.getTicketById(req.params.id, req.user.id);
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const ticket = await ticket_service_1.ticketService.getTicketById(ticketId, req.user.id);
         res.json({ success: true, data: ticket });
     }
     catch (err) {
@@ -73,7 +74,8 @@ exports.getAllTickets = getAllTickets;
 // Admin: get any ticket
 const getTicketByIdAdmin = async (req, res, next) => {
     try {
-        const ticket = await ticket_service_1.ticketService.getTicketById(req.params.id);
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const ticket = await ticket_service_1.ticketService.getTicketById(ticketId);
         res.json({ success: true, data: ticket });
     }
     catch (err) {
@@ -89,7 +91,8 @@ const updateTicket = async (req, res, next) => {
             res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
             return;
         }
-        const ticket = await ticket_service_1.ticketService.updateTicketStatus(req.params.id, parsed.data, req.user.id);
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const ticket = await ticket_service_1.ticketService.updateTicketStatus(ticketId, parsed.data, req.user.id);
         res.json({ success: true, data: ticket });
     }
     catch (err) {
@@ -105,7 +108,7 @@ const respondToTicket = async (req, res, next) => {
             res.status(400).json({ success: false, errors: parsed.error.flatten().fieldErrors });
             return;
         }
-        const message = await ticket_service_1.ticketService.addResponse(req.params.id, req.user.id, parsed.data.message, parsed.data.isInternal, 'ADMIN');
+        const message = await ticket_service_1.ticketService.addResponse(Array.isArray(req.params.id) ? req.params.id[0] : req.params.id, req.user.id, parsed.data.message, parsed.data.isInternal, 'ADMIN');
         res.status(201).json({ success: true, data: message });
     }
     catch (err) {
@@ -116,7 +119,8 @@ exports.respondToTicket = respondToTicket;
 // Admin: generate AI draft response
 const generateAiDraft = async (req, res, next) => {
     try {
-        const ticket = await ticket_service_1.ticketService.getTicketById(req.params.id);
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const ticket = await ticket_service_1.ticketService.getTicketById(ticketId);
         const previousMessages = ticket.messages
             .filter((m) => !m.isInternal)
             .slice(-5)
@@ -134,7 +138,7 @@ const generateAiDraft = async (req, res, next) => {
             bookTitle: ticket.book?.title,
             previousMessages,
         });
-        await (0, aiJobLog_service_1.logAiJob)(ticket.id, 'draft', result.success ? 'success' : 'failed', result.success ? 'draft_generated' : undefined, result.error);
+        await (0, aiJobLog_service_1.logAiJob)(ticketId, 'draft', result.success ? 'success' : 'failed', result.success ? 'draft_generated' : undefined, result.error);
         if (!result.success) {
             res.status(503).json({
                 success: false,
@@ -145,7 +149,7 @@ const generateAiDraft = async (req, res, next) => {
         }
         // Mark ticket as AI draft generated
         await client_1.prisma.ticket.update({
-            where: { id: ticket.id },
+            where: { id: ticketId },
             data: { aiDraftGenerated: true },
         });
         res.json({ success: true, data: { draft: result.draft } });
@@ -158,11 +162,12 @@ exports.generateAiDraft = generateAiDraft;
 // Admin: assign ticket to self
 const assignTicketToSelf = async (req, res, next) => {
     try {
-        const ticket = await client_1.prisma.ticket.findUnique({ where: { id: req.params.id } });
+        const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+        const ticket = await client_1.prisma.ticket.findUnique({ where: { id: ticketId } });
         if (!ticket)
             throw (0, errorHandler_1.createError)('Ticket not found', 404);
         const updated = await client_1.prisma.ticket.update({
-            where: { id: req.params.id },
+            where: { id: ticketId },
             data: { assignedTo: req.user.id, status: 'IN_PROGRESS' },
             include: { assignedUser: { select: { id: true, name: true } } },
         });

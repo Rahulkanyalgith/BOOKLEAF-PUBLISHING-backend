@@ -44,7 +44,8 @@ export const getMyTickets = async (req: AuthRequest, res: Response, next: NextFu
 // Author: get single ticket (own only)
 export const getMyTicketById = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const ticket = await ticketService.getTicketById(req.params.id, req.user!.id);
+    const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const ticket = await ticketService.getTicketById(ticketId, req.user!.id);
     res.json({ success: true, data: ticket });
   } catch (err) {
     next(err);
@@ -75,7 +76,8 @@ export const getAllTickets = async (req: AuthRequest, res: Response, next: NextF
 // Admin: get any ticket
 export const getTicketByIdAdmin = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const ticket = await ticketService.getTicketById(req.params.id);
+    const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const ticket = await ticketService.getTicketById(ticketId);
     res.json({ success: true, data: ticket });
   } catch (err) {
     next(err);
@@ -91,7 +93,8 @@ export const updateTicket = async (req: AuthRequest, res: Response, next: NextFu
       return;
     }
 
-    const ticket = await ticketService.updateTicketStatus(req.params.id, parsed.data, req.user!.id);
+    const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const ticket = await ticketService.updateTicketStatus(ticketId, parsed.data, req.user!.id);
     res.json({ success: true, data: ticket });
   } catch (err) {
     next(err);
@@ -108,7 +111,7 @@ export const respondToTicket = async (req: AuthRequest, res: Response, next: Nex
     }
 
     const message = await ticketService.addResponse(
-      req.params.id,
+      Array.isArray(req.params.id) ? req.params.id[0] : req.params.id,
       req.user!.id,
       parsed.data.message,
       parsed.data.isInternal,
@@ -123,9 +126,17 @@ export const respondToTicket = async (req: AuthRequest, res: Response, next: Nex
 // Admin: generate AI draft response
 export const generateAiDraft = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const ticket = await ticketService.getTicketById(req.params.id);
+    const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const ticket = await ticketService.getTicketById(ticketId);
 
-    const previousMessages = ticket.messages
+    type TicketMessage = {
+      isInternal: boolean;
+      sender: { name: string };
+      message: string;
+      createdAt: Date;
+    };
+
+    const previousMessages = (ticket.messages as TicketMessage[])
       .filter((m) => !m.isInternal)
       .slice(-5)
       .map((m) => ({
@@ -145,7 +156,7 @@ export const generateAiDraft = async (req: AuthRequest, res: Response, next: Nex
     });
 
     await logAiJob(
-      ticket.id,
+      ticketId,
       'draft',
       result.success ? 'success' : 'failed',
       result.success ? 'draft_generated' : undefined,
@@ -163,7 +174,7 @@ export const generateAiDraft = async (req: AuthRequest, res: Response, next: Nex
 
     // Mark ticket as AI draft generated
     await prisma.ticket.update({
-      where: { id: ticket.id },
+      where: { id: ticketId },
       data: { aiDraftGenerated: true },
     });
 
@@ -176,11 +187,12 @@ export const generateAiDraft = async (req: AuthRequest, res: Response, next: Nex
 // Admin: assign ticket to self
 export const assignTicketToSelf = async (req: AuthRequest, res: Response, next: NextFunction): Promise<void> => {
   try {
-    const ticket = await prisma.ticket.findUnique({ where: { id: req.params.id } });
+    const ticketId = Array.isArray(req.params.id) ? req.params.id[0] : req.params.id;
+    const ticket = await prisma.ticket.findUnique({ where: { id: ticketId } });
     if (!ticket) throw createError('Ticket not found', 404);
 
     const updated = await prisma.ticket.update({
-      where: { id: req.params.id },
+      where: { id: ticketId },
       data: { assignedTo: req.user!.id, status: 'IN_PROGRESS' },
       include: { assignedUser: { select: { id: true, name: true } } },
     });
