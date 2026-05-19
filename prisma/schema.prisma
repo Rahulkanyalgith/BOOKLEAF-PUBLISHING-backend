@@ -1,0 +1,164 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  AUTHOR
+  ADMIN
+}
+
+enum TicketStatus {
+  OPEN
+  IN_PROGRESS
+  PENDING_AUTHOR
+  RESOLVED
+  CLOSED
+}
+
+enum TicketPriority {
+  CRITICAL
+  HIGH
+  MEDIUM
+  LOW
+}
+
+enum TicketCategory {
+  ROYALTY_PAYMENTS
+  ISBN_METADATA
+  PRINTING_QUALITY
+  DISTRIBUTION_AVAILABILITY
+  BOOK_STATUS_PRODUCTION
+  GENERAL_INQUIRY
+}
+
+enum BookStatus {
+  MANUSCRIPT_RECEIVED
+  EDITING
+  COVER_DESIGN
+  TYPESETTING
+  PROOFREADING
+  ISBN_ASSIGNMENT
+  PRINTING
+  DISTRIBUTION_SETUP
+  PUBLISHED_LIVE
+}
+
+enum SenderType {
+  AUTHOR
+  ADMIN
+  SYSTEM
+}
+
+model User {
+  id        String   @id @default(uuid())
+  name      String
+  email     String   @unique
+  password  String
+  role      Role     @default(AUTHOR)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  books              Book[]
+  authorTickets      Ticket[]          @relation("AuthorTickets")
+  assignedTickets    Ticket[]          @relation("AssignedTickets")
+  messages           Message[]
+  notifications      Notification[]
+
+  @@map("users")
+}
+
+model Book {
+  id               String     @id @default(uuid())
+  authorId         String
+  title            String
+  isbn             String?    @unique
+  genre            String
+  status           BookStatus @default(MANUSCRIPT_RECEIVED)
+  publicationDate  DateTime?
+  mrp              Float      @default(0)
+  totalCopiesSold  Int        @default(0)
+  royaltyEarned    Float      @default(0)
+  royaltyPaid      Float      @default(0)
+  royaltyPending   Float      @default(0)
+  createdAt        DateTime   @default(now())
+  updatedAt        DateTime   @updatedAt
+
+  author  User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  tickets Ticket[]
+
+  @@map("books")
+}
+
+model Ticket {
+  id               String         @id @default(uuid())
+  authorId         String
+  bookId           String?
+  subject          String
+  description      String
+  category         TicketCategory @default(GENERAL_INQUIRY)
+  aiCategory       TicketCategory?
+  priority         TicketPriority @default(MEDIUM)
+  aiPriority       TicketPriority?
+  status           TicketStatus   @default(OPEN)
+  assignedTo       String?
+  aiClassified     Boolean        @default(false)
+  aiDraftGenerated Boolean        @default(false)
+  createdAt        DateTime       @default(now())
+  updatedAt        DateTime       @updatedAt
+
+  author       User      @relation("AuthorTickets", fields: [authorId], references: [id])
+  book         Book?     @relation(fields: [bookId], references: [id])
+  assignedUser User?     @relation("AssignedTickets", fields: [assignedTo], references: [id])
+  messages     Message[]
+
+  @@map("tickets")
+}
+
+model Message {
+  id         String     @id @default(uuid())
+  ticketId   String
+  senderId   String
+  senderType SenderType
+  message    String
+  isInternal Boolean    @default(false)
+  createdAt  DateTime   @default(now())
+
+  ticket Ticket @relation(fields: [ticketId], references: [id], onDelete: Cascade)
+  sender User   @relation(fields: [senderId], references: [id])
+
+  @@map("messages")
+}
+
+model Notification {
+  id        String   @id @default(uuid())
+  userId    String
+  title     String
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@map("notifications")
+}
+
+model AiJobLog {
+  id          String   @id @default(uuid())
+  ticketId    String
+  jobType     String   // classify | priority | draft
+  status      String   // pending | success | failed
+  attempt     Int      @default(1)
+  errorMsg    String?
+  result      String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("ai_job_logs")
+}

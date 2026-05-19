@@ -1,0 +1,24 @@
+2026-05-18 22:02:35 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-18 22:10:04 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-18 22:10:06 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-18 22:10:28 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
+2026-05-18 22:10:29 [[31merror[39m]: Error: Invalid email or password
+    at createError (C:\Users\acer\Desktop\assignment\backend\src\middleware\errorHandler.ts:10:27)
+    at Object.login (C:\Users\acer\Desktop\assignment\backend\src\services\auth.service.ts:53:24)
+    at processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at login (C:\Users\acer\Desktop\assignment\backend\src\controllers\auth.controller.ts:54:20)
